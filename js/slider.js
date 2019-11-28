@@ -41,17 +41,17 @@ class Slider {
     }
 
     drawSlider() {
-        document.getElementById(this.sliderWrapperId).innerHTML = '';
-        this.activeSlide = this.activeSlide === null ? 0 : this.activeSlide;
         let toogleClass = (this.toggle === true) ? 'show-toogle' : 'hide-toogle';
         let html = `<div class="slides">`;
         let i = 0;
+        document.getElementById(this.sliderWrapperId).innerHTML = '';
+        this.activeSlide = this.activeSlide === null ? 0 : this.activeSlide;
         this.data.forEach(function (slide) {
             let activeClass = this.activeSlide === i ? 'show' : 'hide';
             html += `<div class="slide   ${activeClass}" id="slide-${i}" >`;
             html += `<div class="img"><img src="${slide.img}"></div>`;
             html += `<div class="title">${slide.title} </div>`;
-            html += `<div class="description ${toogleClass}" >  <p>${slide.description}</p></div>`;
+            html += `<div class="description ${toogleClass}" ><p>${slide.description}</p></div>`;
             html += `</div>`;
             i++;
         }, this);
@@ -90,17 +90,33 @@ class Slider {
 
     toogler() {
         this.toggle = !this.toggle;
-        this.drawSlider();
+        this.toggleDescription();
     }
 
     changeSlide() {
         let previeusElement = document.querySelector(`#slide-${this.switchSlides}`);
+        let prevElDescr = document.querySelectorAll(`#slide-${this.switchSlides} .description`);
         let activeElement = document.querySelector(`#slide-${this.activeSlide}`);
+        this.toggle = false;
         previeusElement.classList.remove("show");
         previeusElement.classList.add("hide");
         activeElement.classList.remove("hide");
         previeusElement.classList.add("show");
-     }
+
+        if (prevElDescr[0].classList.contains("show-toogle")) {
+            prevElDescr[0].classList.remove("show-toogle");
+            prevElDescr[0].classList.add("hide-toogle");
+        }
+    }
+
+    toggleDescription() {
+        let activateClass = (this.toggle === true) ? 'show-toogle' : 'hide-toogle';
+        let removeClass = (this.toggle === true) ? 'hide-toogle' : 'show-toogle';
+        let activeElement = document.querySelectorAll(`#slide-${this.activeSlide} .description`);
+
+        activeElement[0].classList.remove(`${removeClass}`);
+        activeElement[0].classList.add(`${activateClass}`);
+    }
 }
 
 

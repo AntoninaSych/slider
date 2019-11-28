@@ -74,7 +74,7 @@ body {
     height: 320px;
     background-color: #ccd0e5bf;
     font-size: 15px;
-    transition: all 15 s ease-in-out;
+    transition: all 1s ease-in-out;
 }
 
 .hide-toogle {padding: 5px;
@@ -84,7 +84,7 @@ body {
     height: 40px;
     margin-top:-15px;
 
-    transition: all 15s ease-in-out;
+    transition: all 1s ease-in-out;
 }
 
 /* end toogler*/
