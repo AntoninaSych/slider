@@ -6,25 +6,24 @@ class Slider {
         this.sliderWrapperId = 'sliderWrapper';
         this.activeSlide = null;
         this.data = null;
-        this.getApiData.bind(this);
+        this.getApiData.call(this);
         this.toggle = false;
         this.wrapper = document.getElementById(this.sliderWrapperId);
         this.switchSlides = 0;
-
     }
 
-        getApiData = function () {
-            fetch(this.source)
-                .then((response) => {
-                    console.log(this.data);
-                    return response.json();
-                }).then((data) => {
-                    console.log(data);//тут ничего
-                this.data = data;
-                drawSlider();
-            });
+    getApiData = function () {
+        fetch(this.source)
+            .then((response) => {
+                console.log(this.data);
+                return response.json();
+            }).then((data) => {
+            console.log(data);//тут ничего
+            this.data = data;
+            this.drawSlider();
+        });
 
-        };
+    };
 
     drawSlider() {
         console.log(this.data);
